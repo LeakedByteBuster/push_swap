@@ -6,24 +6,96 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/16 20:08:38 by mfouadi           #+#    #+#              #
-#    Updated: 2023/03/14 07:03:18 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/03/14 12:04:19 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #----------------------------------------------------------------------------------------------
-# Finding .c Files, list of .o Files, 
+# .c Files, list of .o Files, 
 #----------------------------------------------------------------------------------------------
 
 ROOTDIR := .
 OBJDIR := obj
 # directory of headers files
-INCDIR := include
+INCDIR := inc
 # Finding all .c files in the source directory and its subdirectories
 # $(shell find $(INCDIR) -type f -name '*.c')
-SRC := $(shell find $(ROOTDIR) -type f -name '*.c')
+
+# Data structures
+SRC_DS_SLL := dataStructures/singlyLinkedList/ft_lstadd_back.c \
+              dataStructures/singlyLinkedList/ft_lstadd_front.c \
+              dataStructures/singlyLinkedList/ft_lstclear.c \
+              dataStructures/singlyLinkedList/ft_lstdelone.c \
+              dataStructures/singlyLinkedList/ft_lstiter.c \
+              dataStructures/singlyLinkedList/ft_lstlast.c \
+              dataStructures/singlyLinkedList/ft_lstmap.c \
+              dataStructures/singlyLinkedList/ft_lstnew.c \
+              dataStructures/singlyLinkedList/ft_lstsize.c
+
+# Character functions
+SRC_FT_IS := ft_is/ft_isalnum.c \
+             ft_is/ft_isalpha.c \
+             ft_is/ft_isascii.c \
+             ft_is/ft_isdigit.c \
+             ft_is/ft_isprint.c \
+             ft_is/ft_tolower.c \
+             ft_is/ft_toupper.c
+
+# Get Next Line
+SRC_GNL   := getNextLine/get_next_line.c \
+             getNextLine/get_next_line_utils.c
+
+# Memory functions
+SRC_MEM   := malloc/ft_calloc.c \
+             mem/ft_bzero.c \
+             mem/ft_memchr.c \
+             mem/ft_memcmp.c \
+             mem/ft_memcpy.c \
+             mem/ft_memmove.c \
+             mem/ft_memset.c
+
+# Printf
+SRC_PRINTF := printf/ft_printf.c \
+              printf/utils/conv_hex.c \
+              printf/utils/printf_putchar_fd.c \
+              printf/utils/printf_putnbr_fd.c \
+              printf/utils/printf_putstr_fd.c \
+              printf/utils/printf_putunbr_fd.c \
+              printf/utils/wr_address.c
+
+# Random
+SRC_RAND  := random/ft_rand.c
+
+# String functions
+SRC_STR   := str/conversion/ft_atoi.c \
+             str/conversion/ft_itoa.c \
+             str/ft_split.c \
+             str/ft_strchr.c \
+             str/ft_strdup.c \
+             str/ft_striteri.c \
+             str/ft_strjoin.c \
+             str/ft_strlcat.c \
+             str/ft_strlcpy.c \
+             str/ft_strlen.c \
+             str/ft_strmapi.c \
+             str/ft_strncmp.c \
+             str/ft_strnstr.c \
+             str/ft_strrchr.c \
+             str/ft_strtrim.c \
+             str/ft_substr.c \
+             str/put/ft_putchar_fd.c \
+             str/put/ft_putendl_fd.c \
+             str/put/ft_putnbr_fd.c \
+             str/put/ft_putstr_fd.c
+
+# Combine all sources
+SRC := $(SRC_DS_SLL) $(SRC_FT_IS) $(SRC_GNL) $(SRC_MEM) $(SRC_PRINTF) $(SRC_RAND) $(SRC_STR)
+
+# SRC := $(shell find $(ROOTDIR) -type f -name '*.c')
+
 # patsubst ('pattern substitution') takes a pattern, a replacement string and a list of names
 # List of object files to be generated
-OBJ := $(patsubst $(ROOTDIR)/%,$(OBJDIR)/%,$(SRC:.c=.o))
+OBJ := $(patsubst %, $(OBJDIR)/%,$(SRC:.c=.o))
 # Headers files
 HEADERS := $(shell find $(INCDIR) -type f -name '*.h')
 
@@ -34,7 +106,7 @@ HEADERS := $(shell find $(INCDIR) -type f -name '*.h')
 # Goal of this Makefile
 NAME := libft.a
 # Flags used in 
-CFLAGS := -Werror -Wextra -Wall
+CFLAGS := -Werror -Wextra -Wall -I$(INCDIR) 
 # Command used to rm files and obj directory
 RM := /bin/rm -rf
 # Used for animation
@@ -63,7 +135,6 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	ar rcs $(NAME) $(OBJ)
-
 # $(eval ...) is used to dynamically generate makefile rules.
 #		 - Output of the command is interpreted as makefile code
 #		 - Generated code is added to the Makefile and executed when the makefile run
@@ -71,15 +142,13 @@ $(NAME) : $(OBJ)
 # $(shell ...) is used to capture the value of the output of shell and stores it 
 #			in a make variable
 #		- i.e. $(shell TEST = $(echo "hello"))
-
-
 obj/%.o : %.c $(HEADERS)
-# $(eval FILES_COMPILED = $(shell echo "$(FILES_COMPILED) + 1" | bc ))
-# @ printf ${HBLK}"  Compiling ▻"${HBLK}" [%-20s] "${HBLK} $(notdir $@)
-# @ echo "$(FILES_COMPILED) * 100 / $(TOTAL_FILES)" | bc | tr -d '\n'
-# @ printf "%% \r"${NC}
+	$(eval FILES_COMPILED = $(shell echo "$(FILES_COMPILED) + 1" | bc ))
+	@ printf ${HBLK}"  Compiling ▻"${HBLK}" [%-20s] "${HBLK} $(notdir $@)
+	@ echo "$(FILES_COMPILED) * 100 / $(TOTAL_FILES)" | bc | tr -d '\n'
+	@ printf "%% \r"${NC}
 	@ mkdir -p $(dir $@)
-	 $(CC) $(CFLAGS)  -c $< -o $@ -I$(INCDIR)
+	@ $(CC) $(CFLAGS) -c $< -o $@
 
 #----------------------------------------------------------------------------------------------
 # Deleting object files
