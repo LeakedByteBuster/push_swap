@@ -5,21 +5,23 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/16 20:08:38 by mfouadi           #+#    #+#              #
-#    Updated: 2023/03/14 12:04:19 by mfouadi          ###   ########.fr        #
+#    Created: 2023/03/15 05:06:00 by mfouadi           #+#    #+#              #
+#    Updated: 2023/03/15 06:22:14 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#----------------------------------------------------------------------------------------------
-# .c Files, list of .o Files, 
-#----------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# .c Files, and list of .o Files, 
+#-------------------------------------------------------------------------------
 
+# push_swap directory
 ROOTDIR := .
+
+# obj folder where .o files will be placed
 OBJDIR := obj
+
 # directory of headers files
 INCDIR := inc
-# Finding all .c files in the source directory and its subdirectories
-# $(shell find $(INCDIR) -type f -name '*.c')
 
 # Data structures
 SRC_DS_SLL := dataStructures/singlyLinkedList/ft_lstadd_back.c \
@@ -88,34 +90,47 @@ SRC_STR   := str/conversion/ft_atoi.c \
              str/put/ft_putnbr_fd.c \
              str/put/ft_putstr_fd.c
 
+# Sorting Algorithms
+SRC_SORT := sortingAlgo/bubble_sort.c \
+			sortingAlgo/insertion_sort.c \
+			sortingAlgo/radix.c \
+			sortingAlgo/selection_sort.c \
+
 # Combine all sources
-SRC := $(SRC_DS_SLL) $(SRC_FT_IS) $(SRC_GNL) $(SRC_MEM) $(SRC_PRINTF) $(SRC_RAND) $(SRC_STR)
+SRC  := $(SRC_DS_SLL) $(SRC_FT_IS) $(SRC_GNL) \
+		$(SRC_MEM) $(SRC_PRINTF) $(SRC_RAND) $(SRC_STR) \
+		$(SRC_SORT)
 
-# SRC := $(shell find $(ROOTDIR) -type f -name '*.c')
-
-# patsubst ('pattern substitution') takes a pattern, a replacement string and a list of names
-# List of object files to be generated
-OBJ := $(patsubst %, $(OBJDIR)/%,$(SRC:.c=.o))
 # Headers files
-HEADERS := $(shell find $(INCDIR) -type f -name '*.h')
+HEADERS  := ./inc/ft_printf.h \
+			./inc/get_next_line.h \
+			./inc/libft.h \
+			./inc/sorting.h
 
-#----------------------------------------------------------------------------------------------
+# ('pattern substitution') patsubst (pattern, replacement string, list of names) 
+# List of object files to be generated
+OBJ := $(patsubst %, $(OBJDIR)/%, $(SRC:.c=.o))
+
+#-------------------------------------------------------------------------------
 # Variables
-#----------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
-# Goal of this Makefile
+# Ultimate Goal
 NAME := libft.a
-# Flags used in 
-CFLAGS := -Werror -Wextra -Wall -I$(INCDIR) 
+
+# Flags used in compilation
+CFLAGS := -Werror -Wextra -Wall -I$(INCDIR)
+
 # Command used to rm files and obj directory
 RM := /bin/rm -rf
+
 # Used for animation
 FILES_COMPILED = 0
 TOTAL_FILES = $(shell find $(ROOTDIR) -type f -name "*.c" | wc -l)
 
-#----------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # Terminal ANSI colors
-#----------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 HBLK = '\e[1;90m'
 HRED = '\e[1;91m'
 HGRN = '\e[1;92m'
@@ -126,23 +141,24 @@ HCYN = '\e[1;96m'
 HWHT = '\e[1;97m'
 NC ='\033[0m'
 
-#----------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # Main dependencies
-#----------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
-# Target all depends on static library ($(NAME))
+# Target 'all' depends on static library ($(NAME))
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	ar rcs $(NAME) $(OBJ)
+
 # $(eval ...) is used to dynamically generate makefile rules.
-#		 - Output of the command is interpreted as makefile code
-#		 - Generated code is added to the Makefile and executed when the makefile run
+#	- Output of the command is interpreted as makefile code
+#	- Generated code is added to the Makefile and executed when the makefile run
 
 # $(shell ...) is used to capture the value of the output of shell and stores it 
-#			in a make variable
-#		- i.e. $(shell TEST = $(echo "hello"))
-obj/%.o : %.c $(HEADERS)
+#	  	in a make variable
+#	- i.e. $(shell TEST = $(echo "hello"))
+$(OBJDIR)/%.o : %.c $(HEADERS)
 	$(eval FILES_COMPILED = $(shell echo "$(FILES_COMPILED) + 1" | bc ))
 	@ printf ${HBLK}"  Compiling ▻"${HBLK}" [%-20s] "${HBLK} $(notdir $@)
 	@ echo "$(FILES_COMPILED) * 100 / $(TOTAL_FILES)" | bc | tr -d '\n'
@@ -150,20 +166,33 @@ obj/%.o : %.c $(HEADERS)
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-#----------------------------------------------------------------------------------------------
-# Deleting object files
-#----------------------------------------------------------------------------------------------
+x :
+	@echo "$(SRC) \n\n"
+	@echo $(OBJ)
+#-------------------------------------------------------------------------------
+# Deletion
+#-------------------------------------------------------------------------------
+
+# Deletes object files
 clean :
 	$(RM) $(OBJDIR)
 
+# Deletes libft.a
 fclean : clean
 	$(RM) $(NAME)
 
+# re-compile all .c files
 re : fclean all
 
-#----------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # Special Built-in Target Names
-#----------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+
+# Words that do not represent files of the project
 .Phony : all clean fclean re
+
+# Prevents output of these targets from being printed
 .SILENT : bonus $(NAME) clean fclean re
+
+# Makes 'all' the default target
 .DEFAULT_GOAL := all

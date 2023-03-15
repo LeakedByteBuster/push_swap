@@ -6,15 +6,16 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 10:52:24 by mfouadi           #+#    #+#              #
-#    Updated: 2023/03/14 12:22:58 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/03/15 05:50:50 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-ROOTDIR := .
+# obj folder where .o files will be placed
 OBJDIR := obj
-# directory of headers files
+
+# Directory of headers files
 INCDIR := include
+
 # Finding all .c files in the source directory and its subdirectories
 SRC := mand_src/main.c \
 		mand_src/parsing.c \
@@ -24,8 +25,9 @@ SRC := mand_src/main.c \
 # patsubst ('pattern substitution') takes a pattern, a replacement string and a list of names
 # List of object files to be generated
 OBJ := $(patsubst %, $(OBJDIR)/%,$(SRC:.c=.o))
+
 # Headers files
-HEADERS := $(shell find $(INCDIR) -type f -name '*.h')
+HEADERS := include/push_swap.h
 
 #----------------------------------------------------------------------------------------------
 # Variables
@@ -33,17 +35,17 @@ HEADERS := $(shell find $(INCDIR) -type f -name '*.h')
 
 # Goal of this Makefile
 NAME := push_swap
-# Flags used in 
+
+# Flags used in compilation
 CFLAGS := -Werror -Wextra -Wall
+
 # Command used to rm files and obj directory
 RM := /bin/rm -rf
-# Used for animation
-FILES_COMPILED = 0
-TOTAL_FILES = $(shell find $(ROOTDIR) -type f -name "*.c" | wc -l)
 
 #----------------------------------------------------------------------------------------------
 # Terminal ANSI colors
 #----------------------------------------------------------------------------------------------
+
 HBLK = '\e[1;90m'
 HRED = '\e[1;91m'
 HGRN = '\e[1;92m'
@@ -58,6 +60,7 @@ NC ='\033[0m'
 # Main dependencies
 #----------------------------------------------------------------------------------------------
 
+# Ultimate Goal
 all : $(NAME)
 
 $(NAME) : libft_ar $(OBJ)
@@ -67,25 +70,36 @@ $(OBJDIR)/%.o : %.c $(HEADERS)
 	 mkdir -p $(dir $@)
 	 $(CC) $(CFLAGS) -c $< -I$(INCDIR) -o $@
 
+# Creates static archive 'libft.a'
 libft_ar:
 	make -C libft
-# @echo $(OBJ)
+
 #----------------------------------------------------------------------------------------------
 # Deleting object files
 #----------------------------------------------------------------------------------------------
+
+# Deletes object files
 clean :
 	make -C libft clean
 	$(RM) $(OBJDIR)
 
+# Deletes libft.a, and executable
 fclean : clean
 	make -C libft fclean
 	$(RM) $(NAME) a.out
 
+# re-compile all .c files
 re : fclean all
 
 #----------------------------------------------------------------------------------------------
 # Special Built-in Target Names
 #----------------------------------------------------------------------------------------------
+
+# Words that do not represent files of the project
 .Phony : all clean fclean re
-.SILENT : bonus $(NAME) clean fclean re
+
+# Prevents output of these targets from being printed
+.SILENT : bonus $(NAME) clean fclean re libft_ar
+
+# Makes 'all' the default target
 .DEFAULT_GOAL := all

@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 22:33:09 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/10 19:14:00 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/15 06:23:49 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/file.h>
+#include "sorting.h"
+#include "get_next_line.h"
+#include "ft_printf.h"
 
 # ifndef NULL_CHAR
 #  define  NULL_CHAR 1

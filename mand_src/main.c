@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:51:07 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/14 12:19:15 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/15 06:24:46 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	main()
 {
-	printf("Libft is working");
+	bubble_sort();
 	return (0);
 }
