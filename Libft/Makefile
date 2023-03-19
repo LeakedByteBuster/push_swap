@@ -6,7 +6,7 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 05:06:00 by mfouadi           #+#    #+#              #
-#    Updated: 2023/03/15 06:22:14 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/03/19 08:44:04 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,15 @@ SRC_DS_SLL := dataStructures/singlyLinkedList/ft_lstadd_back.c \
               dataStructures/singlyLinkedList/ft_lstlast.c \
               dataStructures/singlyLinkedList/ft_lstmap.c \
               dataStructures/singlyLinkedList/ft_lstnew.c \
-              dataStructures/singlyLinkedList/ft_lstsize.c
+              dataStructures/singlyLinkedList/ft_lstsize.c \
+\
+              dataStructures/doublyLinkedList/pushnode.c \
+              dataStructures/doublyLinkedList/new_node.c \
+              dataStructures/doublyLinkedList/last_node.c \
+              dataStructures/doublyLinkedList/addback_node.c \
+              dataStructures/doublyLinkedList/addafter_node.c \
+              dataStructures/doublyLinkedList/addbefore_node.c \
+              dataStructures/doublyLinkedList/clear_nodes.c
 
 # Character functions
 SRC_FT_IS := ft_is/ft_isalnum.c \
@@ -91,9 +99,10 @@ SRC_STR   := str/conversion/ft_atoi.c \
              str/put/ft_putstr_fd.c
 
 # Sorting Algorithms
-SRC_SORT := sortingAlgo/bubble_sort.c \
+SRC_SORT := sortingAlgo/bubble_sort/bubble_sort.c \
+			sortingAlgo/bubble_sort/opt_bubble_sort.c \
 			sortingAlgo/insertion_sort.c \
-			sortingAlgo/radix.c \
+			sortingAlgo/merge_sort.c \
 			sortingAlgo/selection_sort.c \
 
 # Combine all sources

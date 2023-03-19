@@ -1,44 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   selection_sort.c                                   :+:      :+:    :+:   */
+/*   addbefore_node.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 05:13:41 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/17 06:11:09 by mfouadi          ###   ########.fr       */
+/*   Created: 2023/03/19 08:22:13 by mfouadi           #+#    #+#             */
+/*   Updated: 2023/03/19 08:29:52 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	swap_int(int *a, int *b)
+// ** Adds the newprev_node before the next_node
+void	addbefore_node(t_node *next_node, t_node *newprev_node)
 {
-	int	tmp;
-
-	tmp = 0;
-	if (a == b)
+	if (!next_node)
 		return ;
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	selection_sort(int a[], int n)
-{
-	int	i;
-	int	j;
-	int	min;
-
-	i = -1;
-	while(++i < n - 1)
-	{
-		j = i - 1;
-		min = i;
-		while (++j < n)
-			if (a[min] > a[j])
-				min = j;
-		swap_int(&a[i], &a[min]);
-	}
-	return;
+	newprev_node->next = next_node;
+	newprev_node->prev = next_node->prev;
+	if (next_node->prev)
+		next_node->prev->next = newprev_node;
+	next_node->prev = newprev_node;
 }

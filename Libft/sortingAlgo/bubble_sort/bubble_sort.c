@@ -6,42 +6,32 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 05:13:46 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/15 06:27:18 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/17 05:47:53 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdbool.h>
 
-// void	bubble_sort(void)
-// {
-// 	// init_print()
-// 	return;
-// }
+static void swap_int(int *a, int *b)
+{
+	int tmp;
 
-// void	init_print(int *arr, int ac, char **av)
-// {
-// 	int	i;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+	return;
+}
 
-// 	i = 1;
-// 	while (i < ac-1)
-// 	{
-// 		arr[i] = ft_atoi(av[i]);
-// 		i++;
-// 	}
-// 	i = 0;
-// 	for (i = 0; i < ac - 1; i++)
-// 	{
-// 		printf("%d", arr[i]);
-// 	}
-// 	return ;
-// }
+void	bubble_sort(int a[], int n)
+{
+	int k;
 
-// int	main(int ac, char **av)
-// {
-// 	int	arr[4096];
-	
-// 	if (ac < 3)
-// 		printf("More Numbers");
-// 	init_print(arr, ac, av);
-// 	return (0);
-// }
+	while (--n)
+	{
+		k = -1;
+		while (++k < n)
+			if (a[k] > a[k + 1])
+				swap_int(&a[k], &a[k + 1]);
+	}
+	return;
+}

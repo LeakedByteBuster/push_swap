@@ -6,7 +6,7 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 10:52:24 by mfouadi           #+#    #+#              #
-#    Updated: 2023/03/15 05:50:50 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/03/16 05:50:57 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,10 @@ HEADERS := include/push_swap.h
 NAME := push_swap
 
 # Flags used in compilation
-CFLAGS := -Werror -Wextra -Wall
+CFLAGS := -Werror -Wextra -Wall -I$(INCDIR)
+
+# libft static archive
+LIBFT_ARCHIVE = libft/libft.a
 
 # Command used to rm files and obj directory
 RM := /bin/rm -rf
@@ -64,11 +67,11 @@ NC ='\033[0m'
 all : $(NAME)
 
 $(NAME) : libft_ar $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_ARCHIVE)
 
 $(OBJDIR)/%.o : %.c $(HEADERS)
 	 mkdir -p $(dir $@)
-	 $(CC) $(CFLAGS) -c $< -I$(INCDIR) -o $@
+	 $(CC) $(CFLAGS) -c $< -o $@
 
 # Creates static archive 'libft.a'
 libft_ar:

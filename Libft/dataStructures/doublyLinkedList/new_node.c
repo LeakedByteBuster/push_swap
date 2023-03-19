@@ -1,44 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   selection_sort.c                                   :+:      :+:    :+:   */
+/*   new_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 05:13:41 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/17 06:11:09 by mfouadi          ###   ########.fr       */
+/*   Created: 2023/03/18 17:49:22 by mfouadi           #+#    #+#             */
+/*   Updated: 2023/03/18 18:33:54 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	swap_int(int *a, int *b)
+t_node	*new_node(void *data)
 {
-	int	tmp;
+	t_node	*node;
 
-	tmp = 0;
-	if (a == b)
-		return ;
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	selection_sort(int a[], int n)
-{
-	int	i;
-	int	j;
-	int	min;
-
-	i = -1;
-	while(++i < n - 1)
-	{
-		j = i - 1;
-		min = i;
-		while (++j < n)
-			if (a[min] > a[j])
-				min = j;
-		swap_int(&a[i], &a[min]);
-	}
-	return;
+	node = (t_node *)malloc(sizeof(t_node));
+	if (!node)
+		return (NULL);
+	node->next = NULL;
+	node->prev = NULL;
+	node->data = data;
+	return (node);
 }

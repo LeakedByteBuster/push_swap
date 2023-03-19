@@ -1,44 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   selection_sort.c                                   :+:      :+:    :+:   */
+/*   addback_node.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 05:13:41 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/17 06:11:09 by mfouadi          ###   ########.fr       */
+/*   Created: 2023/03/18 18:10:24 by mfouadi           #+#    #+#             */
+/*   Updated: 2023/03/18 18:55:27 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	swap_int(int *a, int *b)
+void	addback_node(t_node **lst, t_node *new)
 {
-	int	tmp;
+	t_node	*last;
 
-	tmp = 0;
-	if (a == b)
-		return ;
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	selection_sort(int a[], int n)
-{
-	int	i;
-	int	j;
-	int	min;
-
-	i = -1;
-	while(++i < n - 1)
+	if (!lst || !(*lst))
 	{
-		j = i - 1;
-		min = i;
-		while (++j < n)
-			if (a[min] > a[j])
-				min = j;
-		swap_int(&a[i], &a[min]);
+		*lst = new;
+		return ;
 	}
-	return;
+	last = last_node(*lst);
+	new->prev = last;
+	last->next = new;
 }

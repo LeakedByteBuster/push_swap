@@ -6,18 +6,34 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 05:13:49 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/15 06:18:48 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/17 05:52:26 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void insertion_sort()
+static void	swap_int(int *a, int *b)
 {
-	return;
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
-int main()
+void	insertion_sort(int a[], int n)
 {
-	return (0);
+	int	i;
+	int	j;
+	
+	i = 1;
+	while (i < n)
+	{
+		j = i;
+		while (j > 0 && a[j-1] > a[j])
+		{
+			swap_int(&a[j], &a[j-1]);
+			j--;
+		}
+		i++;
+	}
+	return;
 }
