@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 23:14:52 by mfouadi           #+#    #+#             */
-/*   Updated: 2022/11/07 08:48:58 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/20 02:06:55 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*ft_memset(void *b, int c, size_t len)
 	size_t			tmp;
 	unsigned char	cast_c;
 
+	if (!b)
+		return (NULL);
 	cast_c = (unsigned char)(c);
 	tmp = len;
 	i = 0;

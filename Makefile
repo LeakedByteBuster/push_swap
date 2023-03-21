@@ -6,7 +6,7 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 10:52:24 by mfouadi           #+#    #+#              #
-#    Updated: 2023/03/16 05:50:57 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/03/19 11:12:54 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ $(NAME) : libft_ar $(OBJ)
 
 $(OBJDIR)/%.o : %.c $(HEADERS)
 	 mkdir -p $(dir $@)
-	 $(CC) $(CFLAGS) -c $< -o $@
+	 $(CC) $(CFLAGS) -I../libft/inc -c $< -o $@
 
 # Creates static archive 'libft.a'
 libft_ar:

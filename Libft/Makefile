@@ -6,7 +6,7 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 05:06:00 by mfouadi           #+#    #+#              #
-#    Updated: 2023/03/19 08:44:04 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/03/19 11:19:59 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -173,7 +173,7 @@ $(OBJDIR)/%.o : %.c $(HEADERS)
 	@ echo "$(FILES_COMPILED) * 100 / $(TOTAL_FILES)" | bc | tr -d '\n'
 	@ printf "%% \r"${NC}
 	@ mkdir -p $(dir $@)
-	@ $(CC) $(CFLAGS) -c $< -o $@
+	@ $(CC) $(CFLAGS) -I../../include/ -c $< -o $@
 
 x :
 	@echo "$(SRC) \n\n"

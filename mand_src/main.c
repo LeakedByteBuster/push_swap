@@ -6,95 +6,53 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:51:07 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/19 08:38:45 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/21 10:34:29 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	print_bubble(int a[], int n)
-// {
-// 	printf("Bubble sort		input=%d:	", n);
-// 	for (int i = 0; i < n; i++)
-// 		printf("%d ", a[i]);
-// 	printf("\n");
-// }
+// * read, write, malloc, free, exit, ft_printf : Sort stacks
+/*
+**	if no parameters are specified, the program must not display anything and give the
+		prompt back
 
-// void	print_insertion(int a[], int n)
-// {
-// 	printf("Insertion sort		input=%d:	", n);
-// 	for (int i = 0; i < n; i++)
-// 		printf("%d ", a[i]);
-// 	printf("\n");
-// }
+**	The first argument should be at the top of the stack
+**	Instructions must be separated by a '\n' and nothing else.
+**	The goal is to sort the stack with the lowest possible number of operations
+**	In case of error, it must display "Error" followed by a '\n' on the standard error.
+		some arguments aren't integers, some arguments are bigger than an integer and/or there are duplicates
+*/
 
-// void	print_opt_bubsort(int a[], int n)
-// {
-// 	printf("Opt bubble sort		input=%d:	", n);
-// 	for (int i = 0; i < n; i++)
-// 		printf("%d ", a[i]);
-// 	printf("\n");
-// }
-
-// void	print_selectsort(int a[], int n)
-// {
-// 	printf("Select sort		input=%d:	", n);
-// 	for (int i = 0; i < n; i++)
-// 		printf("%d ", a[i]);
-// 	printf("\n");
-// }
-
-// int	main()
-// {
-// 	int	a[] = {6, 2, 3, 4};
-// 	int n = sizeof(a) / sizeof(int);
-// 	// bubble_sort(a, n);
-// 	// print_bubble(a, n);
-	
-// 	// int b[] = {1, 2, 66, -565, -5, 644, 22, 33, 0, 01, 1004, 9999, -98, 54, -9956, 8745, -663, -662, -661, 50, 10000};
-// 	// int n1 = sizeof(a) / sizeof(int);
-// 	// opt_bubble_sort(b, n1);
-// 	// print_opt_bubsort(b, n1);
-	
-// 	// int c[] = {1, 2, 66, -565, -5, 644, 22, 33, 0, 01, 1004, 9999, -98, 54, -9956, 8745, -663, -662, -661, 50, 10000};
-// 	// int n2 = sizeof(c) / sizeof(int);
-// 	// insertion_sort(c, n2);
-// 	// print_insertion(c, n2);
-
-// 	// int d[] = {1, 2, 66, -565, -5, 644, 22, 33, 0, 01, 1004, 9999, -98, 54, -9956, 8745, -663, -662, -661, 50, 10000};
-// 	// int n3 = sizeof(d) / sizeof(int);
-// 	// selection_sort(d, n3);
-// 	// print_selectsort(d, n3);
-// 	merge_sort(a, 0, n);
-// 	printf("\nFinished\n");
-
-// }
-
-int	main(int ac, char **av)
+void	lk()
 {
-	int i = 1;
-	t_node	*p;
-	t_node	*head;
-	
+	system("leaks a.out");
+}
+
+int main(int ac, char **av)
+{
+	t_data	data;
+	t_node	*tmp;
+
 	if (ac < 2)
 		exit(1);
-	while (ac != 1)
+	// ** Parsing arguments
+	parser(&data, ac, av);
+
+	/*Prints input as it is in stack a*/
+	printf("\nstk_size = %d | ac = %d | last = %d \n", data.s_a->stk_size, ac, data.s_a->botm->data);
+	tmp = data.s_a->head;
+	while (data.s_a->stk_size-- != 0)
 	{
-		p = new_node(av[i]);
-		addback_node(&head, p);
-		i++;
-		ac--;
+		printf("%d ", tmp->data);
+		tmp = tmp->next;
 	}
-	push_node(&head, new_node(av[8]));
-	addafter_node(head, new_node(av[7]));
-	addbefore_node(head->next, new_node(av[6]));
-	p = head;
-	while (p)
-	{
-		printf("%s\n", p->data);
-		p = p->next;
-	}
-	// printf("last node == %s\n", head->next->data);
-	printf("last node == %s\n", last_node(head)->data);
+
+	// **	free both stacks
+	free_stacks(&data);
+	
+	// **	Checks leaks
+	// atexit(lk);
 	return (0);
 }
+

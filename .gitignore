@@ -4,3 +4,7 @@ DS_Store
 obj
 outfile
 infile
+libft/libft.a
+libft/*.o
+*.excalidraw
+.vscode

@@ -6,13 +6,13 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:49:22 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/18 18:33:54 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/20 02:49:24 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_node	*new_node(void *data)
+t_node	*new_node(int data)
 {
 	t_node	*node;
 

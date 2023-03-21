@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 22:33:09 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/19 08:44:37 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/21 08:43:56 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,35 @@
 # include <sys/file.h>
 # include <stdbool.h>
 # include <stdbool.h>
-# include "sorting.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
+# include "../../include/push_swap.h"
 
 # ifndef NULL_CHAR
 #  define  NULL_CHAR 1
 # endif // #define NULL_CHAR
 
+// **	Stack_a and Stack_b are declared in push_swap.h
+typedef struct	stack_a t_a;
+typedef struct	stack_b t_b;
+
+// ** Structure of singly linked list
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
 
+// ** Structure of doubly linked list, adapted to push swap
 typedef struct s_node
 {
-	void			*data;
+	int				idx;
+	int				data;
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;
 
+// ** 
 char	*ft_itoa(int n);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -89,6 +97,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
+// ** functions used by GetNextLine
 char	*get_next_line(int fd);
 char	*ft_strchr_gnl(const char *s, int c);
 char	*ft_strdup_gnl(const char *s1);
@@ -96,21 +105,23 @@ size_t	ft_strlen_gnl(const char *s);
 char	*ft_strcat_gnl(char *s1, char *s2, char *str, size_t len);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 
+// ** functions used by printf
 int		printf_putchar_fd(char c, int fd);
 int		printf_putnbr_fd(int n, int fd);
 int		printf_putstr_fd(char *s, int fd);
 int		printf_putunbr_fd(unsigned int n, int fd);
 
 typedef unsigned long long	t_ull;
+// **	Generates a random number
 t_ull	ft_rand(void);
 
 /*Doubly Linked List*/
-t_node	*new_node(void *data);
+t_node	*new_node(int data);
 t_node	*last_node(t_node *node);
 void	push_node(t_node **lst, t_node *new);
 void	addback_node(t_node **lst, t_node *new);
 void	addafter_node(t_node *prev_node, t_node *new_node);
 void	addbefore_node(t_node *next_node, t_node *newprev_node);
-void	clear_node(t_node *head);
+void	clear_node(t_node **head);
 
 #endif // #define LIBFT_H

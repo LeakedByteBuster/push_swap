@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 22:25:31 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/17 05:51:54 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/21 08:02:01 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,42 +30,49 @@
 
 #include "libft.h"
 
-static char	*ft_spaces(char *str)
+static char	*skip_spaces(char *str)
 {
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
 		str++;
 	return (str);
 }
 
-int	ft_atoi(const char *str)
+void print_err()
 {
-	unsigned long	res;
-	unsigned long	check;
-	int				sign;
+	write(2, "Error\n", 7);
+	exit(3);
+}
+
+void	sign_handler(const char **str, int *sign)
+{
+	if (**str == '-' || **str == '+')
+	{
+		if (**str == '-')
+			*sign *= -1;
+		(*str)++;
+	}
+	if (**str == 0)
+		print_err();
+	return ;
+}
+
+int ft_atoi(const char *str)
+{
+	long res;
+	int sign;
 
 	sign = 1;
 	res = 0;
-	str = ft_spaces((char *)str);
-	if (*str == '-')
+	str = skip_spaces((char *)str);
+	sign_handler(&str, &sign);
+	while (*str && ft_isdigit(*str))
 	{
-		sign *= -1;
-		str++;
-	}
-	// "   +kladjsfh"
-	else if (*str == '+')
-		str++;
-	// if (is)
-	while (*str != '\0' && ft_isdigit(*str))
-	{
-		check = res;
 		res = res * 10 + *str - '0';
-		if ((res / 10) != check && sign == -1)
-			return (0);
-		else if ((res / 10) != check && sign == 1)
-			return (-1);
+		if ((res > INT_MAX && sign == 1) || (res - 1 > INT_MAX && sign == -1))
+			print_err();
 		str++;
 	}
-	// if (*str != 0)
-	// 	error
-	return (res * sign);
+	if (*str != 0)
+		print_err();
+	return ((int)res * sign);
 }
