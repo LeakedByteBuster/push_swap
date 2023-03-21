@@ -6,7 +6,7 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 10:52:24 by mfouadi           #+#    #+#              #
-#    Updated: 2023/03/19 11:12:54 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/03/21 11:49:49 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ INCDIR := include
 # Finding all .c files in the source directory and its subdirectories
 SRC := mand_src/main.c \
 		mand_src/parsing.c \
-		mand_src/push_swap.c \
 		mand_src/utils/utils.c \
+		mand_src/utils/instructions.c \
 
 # patsubst ('pattern substitution') takes a pattern, a replacement string and a list of names
 # List of object files to be generated
@@ -77,6 +77,9 @@ $(OBJDIR)/%.o : %.c $(HEADERS)
 libft_ar:
 	make -C libft
 
+debug : libft_ar $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) -fsanitize=address -g $(OBJ) $(LIBFT_ARCHIVE)
+	
 #----------------------------------------------------------------------------------------------
 # Deleting object files
 #----------------------------------------------------------------------------------------------
@@ -99,7 +102,7 @@ re : fclean all
 #----------------------------------------------------------------------------------------------
 
 # Words that do not represent files of the project
-.Phony : all clean fclean re
+.Phony : all clean fclean re debug
 
 # Prevents output of these targets from being printed
 .SILENT : bonus $(NAME) clean fclean re libft_ar

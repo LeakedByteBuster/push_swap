@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:46:23 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/18 19:32:39 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/21 12:40:37 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	push_node(t_node **lst, t_node *new)
 		new->next = *lst;
 	}
 	*lst = new;
+	new->prev = NULL;
 }

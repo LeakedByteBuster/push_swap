@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:51:07 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/21 10:34:29 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/21 13:06:23 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,34 @@ int main(int ac, char **av)
 	// ** Parsing arguments
 	parser(&data, ac, av);
 
-	/*Prints input as it is in stack a*/
+	push_node(&data.s_b->head, new_node(1));
+	push_node(&data.s_b->head, new_node(2));
+	push_node(&data.s_b->head, new_node(3));
+	// push_node(&data.s_b->head, new_node(1001));
+	data.s_b->stk_size+=3;
+
+
 	printf("\nstk_size = %d | ac = %d | last = %d \n", data.s_a->stk_size, ac, data.s_a->botm->data);
+	
+	// ** Testing Instructions
+	ft_ss(&data);
+	ft_pa(&data);
+	ft_pa(&data);
+	ft_sa(&data);
+	ft_pa(&data);
 	tmp = data.s_a->head;
-	while (data.s_a->stk_size-- != 0)
+	/*Prints stack a*/
+	while (tmp)
+	{
+		printf("%d ", tmp->data);
+		tmp = tmp->next;
+	}
+	
+	// ** Testing swap b
+	printf("\n\n");
+	tmp = data.s_b->head;
+	// // ** prints stack B
+	while (tmp)
 	{
 		printf("%d ", tmp->data);
 		tmp = tmp->next;
@@ -52,7 +76,7 @@ int main(int ac, char **av)
 	free_stacks(&data);
 	
 	// **	Checks leaks
-	// atexit(lk);
+	atexit(lk);
 	return (0);
 }
 
