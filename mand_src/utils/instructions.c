@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:36:18 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/21 13:02:00 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/22 10:52:31 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ void	ft_sa(t_data *data)
 	t_node	*tmp_head;
 	int		tmp;
 	
-	tmp_head = HEAD_A;
-	if (data->s_a->stk_size > 1)
+	if (STK_SIZE_A > 1)
 	{
-		tmp = HEAD_A->data;
-		HEAD_A->data = HEAD_A->next->data;
-		HEAD_A->next->data = tmp;
+		tmp_head = HEAD_A;
+		if (STK_SIZE_A > 1)
+		{
+			tmp = HEAD_A->data;
+			HEAD_A->data = HEAD_A->next->data;
+			HEAD_A->next->data = tmp;
+		}
 	}
 	return ;
 }
@@ -51,19 +54,46 @@ void	ft_ss(t_data *data)
 	ft_sb(data);
 	return ;
 }
+
 // ** Take the first element at the top of b and put it at the top of a.
 void	ft_pa(t_data *data)
 {
-	t_node	*tmp4;
-	if (data->s_b->stk_size > 0)
+	t_node	*tmp;
+
+	if (STK_SIZE_B > 0)
 	{
-		tmp4 = data->s_b->head;
+		// **	store head of B
+		tmp = data->s_b->head;
+		// **	push node to top of of A
 		push_node(&data->s_a->head, new_node(data->s_b->head->data));
-		// printf("node_a=%d\n", data->s_a->head->data);
+		// **	new head of B is second node
 		data->s_b->head = data->s_b->head->next;
-		free(tmp4);
-		// printf("node_b=%d\n", data->s_b->head->data);
-		data->s_a->stk_size++;
-		data->s_b->stk_size--;
+		// **	free previous head
+		free(tmp);
+		// **	increment size of stack A
+		STK_SIZE_A++;
+		// **	decrement size of stack B
+		STK_SIZE_B--;
 	}
+	return ;
+}
+
+// **	Take the first element at the top of a and put it at the top of b.
+void	ft_pb(t_data *data)
+{
+	t_node	*tmp;
+
+	if (STK_SIZE_A > 0)
+	{
+	// 	// **	Store head node in A
+		tmp = HEAD_A;
+	// 	// **	Push head node from A to B
+		push_node(&HEAD_B, new_node(HEAD_A->data));
+	// 	// **	New head of STACK_A is second node
+		HEAD_A = HEAD_A->next;
+		free(tmp);
+		STK_SIZE_A--;
+		STK_SIZE_B++;
+	}
+	return ;
 }

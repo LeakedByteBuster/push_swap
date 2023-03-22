@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:15:03 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/21 12:24:09 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/22 10:56:04 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PUSH_SWAP_H
 
 # include "../libft/inc/libft.h"
+
+#define STK_A data->s_a
+#define STK_B data->s_b
 
 #define HEAD_A data->s_a->head
 #define HEAD_B data->s_b->head
@@ -24,7 +27,7 @@
 #define STK_SIZE_A data->s_a->stk_size
 #define STK_SIZE_B data->s_b->stk_size
 
-typedef struct s_node t_node;
+typedef struct s_node	t_node;
 
 // **	Initial stack that contains the given values 
 typedef struct	stack_a
@@ -57,13 +60,31 @@ void	err_msg(int status);
 void	free_stacks(t_data *data);
 
 /* ************* Instuctions ************* */
+
 // **	Swaps the two elements at top of stack A
 void	ft_sa(t_data *data);
 // **	Swaps the two elements at top of stack B
 void	ft_sb(t_data *data);
 // **	sa and sb at the same time
 void	ft_ss(t_data *data);
-// ** Take the first element at the top of b and put it at the top of a.
+
+// **	Take the first element at the top of b and put it at the top of a
 void	ft_pa(t_data *data);
+// **	Take the first element at the top of a and put it at the top of b
+void	ft_pb(t_data *data);
+
+// **	Shift up all elements of stack a by 1. The first element becomes the last one
+void	ft_ra(t_data *data);
+// **	Shift up all elements of stack b by 1. The first element becomes the last one
+void	ft_rb(t_data *data);
+// **	ra and rb at the same time
+void	ft_rr(t_data *data);
+
+// **	Shift down all elements of stack a by 1. The last element becomes the first one.
+void	ft_rra(t_data *data);
+// **	Shift down all elements of stack b by 1. The last element becomes the first one.
+void	ft_rrb(t_data *data);
+// **	rra and rrb at the same time
+void	ft_rrr(t_data *data);
 
 #endif // PUSH_SWAP_H
