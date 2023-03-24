@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:51:07 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/22 11:57:10 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/24 05:50:43 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,35 +56,50 @@ void	test_instuctions(t_data *data, int ac)
 	// ** Testing Instructions
 
 	// **	pa pb pb ss
-	// for (size_t i = 0; i < 1000; i++)
-	// {
-	// 	ft_pa(data);
-	// 	ft_pb(data);
-	// 	ft_pb(data);
-	// 	ft_ss(data);
-	// }
-	// // **	pa sa
-	// for (size_t i = 0; i < 1000; i++)
-	// {
-	// 	ft_pa(data);
-	// 	ft_sa(data);
-	// 	ft_rr(data);
-	// }
-	// ** SINGLE INSTRUCTION LAB
 	for (size_t i = 0; i < 1000; i++)
 	{
-		// ft_pa(data);
+		ft_pa(data);
+		ft_pb(data);
+		ft_pb(data);
+		ft_ss(data);
+	}
+	// // // **	pa sa
+	for (size_t i = 0; i < 1000; i++)
+	{
+		ft_pa(data);
+		ft_sa(data);
+		ft_rr(data);
+	}
+	// // ** SINGLE INSTRUCTION LAB
+	for (size_t i = 0; i < 100; i++)
+	{
+		ft_pa(data);
 		// ft_sa(data);
-		// ft_ra(data);
-		ft_rra(data);
-		// ft_ra(data);
-
-		// ft_rr(data);
-		
-		// ft_rrr(data);
+		ft_rb(data);
+		// // printf("1 : a_size = %d | b_size = %d | ac = %d \n\n", STK_SIZE_A, STK_SIZE_B, ac);
+		ft_rrb(data);
+		// // printf("2 : a_size = %d | b_size = %d | ac = %d \n\n", STK_SIZE_A, STK_SIZE_B, ac);
+		ft_ra(data);
+		ft_rr(data);
+		ft_rrr(data);
 	}
 	(void)ac;
-	// ft_pa(data);
+	ft_pb(data);
+	ft_rb(data);
+	ft_rb(data);
+	ft_rrb(data);
+	ft_pa(data);
+	ft_pb(data);
+	ft_pb(data);
+	ft_rrr(data);
+	ft_sb(data);
+	ft_pa(data);
+	ft_pb(data);
+	ft_pb(data);
+	ft_pb(data);
+	ft_pb(data);
+	ft_rra(data);
+	ft_rb(data);
 	// printf("a_size = %d | b_size = %d | ac = %d | BOTM_A = %d | BOTM_B = %d\n\n",
 	// 	   STK_SIZE_A, STK_SIZE_B, ac, BOTM_A->data, BOTM_B->data);
 	return ;
@@ -118,26 +133,29 @@ int main(int ac, char **av)
 		exit(1);
 	// ** Parsing arguments
 	parser(&data, ac, av);
-	
+	// printf("PARSER : HEAD_A = %d | stacka_size = %d \n\n", data.s_a->head->data, data.s_a->stk_size);
+
 	//	** Fill Stack_b for testing instructions
 	fill_stk_b(&data);
 
 	// **	Test instructions
+	// printf("INPUT: a_size = %d | b_size = %d | ac = %d \n\n", data.s_a->stk_size, data.s_b->stk_size, ac);
 	test_instuctions(&data, ac);
 
 	// **	Print content of both stacks
 	print_stacks(data);
 	// printf("\n\na_size = %d | b_size = %d | ac = %d | BOTM_A = %d | BOTM_B = %d\n",
 	// 	   data.s_a->stk_size, data.s_b->stk_size, ac, data.s_a->botm->data, data.s_b->botm->data);
-	// **	free both stacks
-	printf("a_size = %d | b_size = %d | ac = %d \n\n", data.s_a->stk_size, data.s_b->stk_size, ac);
+	
+	printf("a_size = %d | b_size = %d | ac = %d HEAD_A = %d | HEAD_B = %d | BOTM_B = %d | BOTM_A = %d\n\n",
+		   data.s_a->stk_size, data.s_b->stk_size, ac, data.s_a->head->data, data.s_b->head->data, data.s_b->botm->data, data.s_a->botm->data);
 
+	// **	free both stacks
 	free_stacks(&data);
+	
 	// **	Checks leaks
 	atexit(lk);
 
-	// printf("a_size = %d | b_size = %d | ac = %d | BOTM_B = %d\n\n",
-	// 	   data.s_a->stk_size, data.s_b->stk_size, ac,data.s_b->botm->data);
 	return (0);
 }
 

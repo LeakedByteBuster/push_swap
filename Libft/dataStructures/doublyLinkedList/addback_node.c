@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 18:10:24 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/22 11:31:36 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/23 02:01:22 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ void	addback_node(t_node **lst, t_node *new)
 {
 	t_node	*last;
 
-	if (!lst || !(*lst))
-	{
-		*lst = new;
+	if (!lst || !new)
 		return ;
-	}
+	if (!(*lst))
+		return (*lst = new, (void)0);
 	last = last_node(*lst);
 	new->prev = last;
 	last->next = new;
-	// new->next = NULL;
 }

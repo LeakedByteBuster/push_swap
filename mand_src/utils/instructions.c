@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:36:18 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/22 10:52:31 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/24 05:38:42 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ void	ft_sa(t_data *data)
 	if (STK_SIZE_A > 1)
 	{
 		tmp_head = HEAD_A;
-		if (STK_SIZE_A > 1)
-		{
-			tmp = HEAD_A->data;
-			HEAD_A->data = HEAD_A->next->data;
-			HEAD_A->next->data = tmp;
-		}
+		tmp = HEAD_A->data;
+		HEAD_A->data = HEAD_A->next->data;
+		HEAD_A->next->data = tmp;
 	}
+	// if (STK_SIZE_A )
 	return ;
 }
 
@@ -75,6 +73,8 @@ void	ft_pa(t_data *data)
 		// **	decrement size of stack B
 		STK_SIZE_B--;
 	}
+	// if (STK_SIZE_B == 0)
+	// 	STK_B->botm = NULL;
 	return ;
 }
 
@@ -95,5 +95,7 @@ void	ft_pb(t_data *data)
 		STK_SIZE_A--;
 		STK_SIZE_B++;
 	}
-	return ;
+	// if (STK_SIZE_A == 1)
+	// 	BOTM_B = HEAD_A;
+	return;
 }
