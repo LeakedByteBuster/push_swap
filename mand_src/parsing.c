@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 09:06:31 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/21 11:52:51 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/29 06:10:59 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	find_duplicate_nbr(t_data *data)
 	check = 0;
 	while (tmp)
 	{
+		MAX_VAL_A = tmp;
+		MIN_VAL_A = tmp;
 		check = tmp->data;
 		tmp2 = tmp;
 		while (tmp2->next)
@@ -68,10 +70,33 @@ void	find_duplicate_nbr(t_data *data)
 	return ;
 }
 
+void	if_sorted(t_data *data)
+{
+	t_node	*node;
+	int		i;
+	
+	i = STK_SIZE_A;
+	node = HEAD_A;
+	while (i--)
+	{
+		if (node->next && (node->data < node->next->data))
+			node = node->next;
+		else
+			break;
+	}
+	if (i == 0)
+		exit(0);
+	return ;
+}
+
 void	parser(t_data *data, int ac, char **av)
 {	
 	init_data(data);
 	fill_stack_a(data, av, ac);
+	if_sorted(data);
 	find_duplicate_nbr(data);
+	min_max(data, HEAD_A);
+	index_stack(HEAD_A, STK_SIZE_A);
+	current_index_instack(HEAD_A, STK_SIZE_A);
 	return ;
 }

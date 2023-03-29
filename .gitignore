@@ -1,5 +1,7 @@
 a.out
-DS_Store
+push_swap
+checker
+.DS_Store
 *.o
 obj
 outfile

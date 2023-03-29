@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:36:18 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/24 05:38:42 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/29 06:13:06 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_sa(t_data *data)
 		HEAD_A->data = HEAD_A->next->data;
 		HEAD_A->next->data = tmp;
 	}
-	// if (STK_SIZE_A )
+	write(1, "sa\n", 3);
 	return ;
 }
 
@@ -42,6 +42,7 @@ void	ft_sb(t_data *data)
 		HEAD_B->data = HEAD_B->next->data;
 		HEAD_B->next->data = tmp;
 	}
+	write(1, "sb\n", 3);
 	return ;
 }
 
@@ -50,6 +51,7 @@ void	ft_ss(t_data *data)
 {
 	ft_sa(data);
 	ft_sb(data);
+	write(1, "ss\n", 3);
 	return ;
 }
 
@@ -73,8 +75,7 @@ void	ft_pa(t_data *data)
 		// **	decrement size of stack B
 		STK_SIZE_B--;
 	}
-	// if (STK_SIZE_B == 0)
-	// 	STK_B->botm = NULL;
+	write(1, "pa\n", 3);
 	return ;
 }
 
@@ -95,7 +96,6 @@ void	ft_pb(t_data *data)
 		STK_SIZE_A--;
 		STK_SIZE_B++;
 	}
-	// if (STK_SIZE_A == 1)
-	// 	BOTM_B = HEAD_A;
+	write(1, "pb\n", 3);
 	return;
 }

@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 22:33:09 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/22 10:13:48 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/03/29 05:05:21 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_list
 typedef struct s_node
 {
 	int				idx;
+	int				cur_idx;
 	int				data;
 	struct s_node	*next;
 	struct s_node	*prev;
