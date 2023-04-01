@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 01:24:30 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/01 02:03:35 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/01 10:37:33 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,17 @@ void	sort_that_shit(t_data *data)
 	else if (STK_SIZE_A == 5)
 		sort_five(data);
 	else if (STK_SIZE_A <= 100)
-		sort_a_bunch(data, 5);
+	{
+		push_to_b(data, 5, (STK_SIZE_A / 5));
+		push_to_a(data);
+	}
+	else if (STK_SIZE_A <= 500)
+	{
+		/*
+		5564 -> div = 8
+		*/
+		push_to_b(data, 10, (STK_SIZE_A / 10));
+		push_to_a(data);
+	}
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:36:18 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/01 06:13:54 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/01 09:33:12 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 // ** Swap the first 2 elements at the top of stack a
 void	ft_sa(t_data *data)
 {
-	t_node	*tmp_head;
-	int		tmp;
+	int	tmp2;
+	int	tmp;
 	
 	if (STK_SIZE_A > 1)
 	{
-		tmp_head = HEAD_A;
 		tmp = HEAD_A->data;
+		tmp2 = HEAD_A->idx;
+		HEAD_A->idx = HEAD_A->next->idx;
 		HEAD_A->data = HEAD_A->next->data;
 		HEAD_A->next->data = tmp;
+		HEAD_A->next->idx = tmp2;
 		write(1, "sa\n", 3);
 	}
 	return ;
@@ -32,15 +34,17 @@ void	ft_sa(t_data *data)
 // ** Swap the first 2 elements at the top of stack b
 void	ft_sb(t_data *data)
 {
-	t_node	*tmp_head;
-	int		tmp;
+	int	tmp2;
+	int	tmp;
 
-	tmp_head = HEAD_B;
 	if (STK_SIZE_B > 1)
 	{
 		tmp = HEAD_B->data;
+		tmp2 = HEAD_B->idx;
+		HEAD_B->idx = HEAD_B->next->idx;
 		HEAD_B->data = HEAD_B->next->data;
 		HEAD_B->next->data = tmp;
+		HEAD_B->next->idx = tmp2;
 		write(1, "sb\n", 3);
 	}
 	return ;
@@ -66,7 +70,7 @@ void	ft_pa(t_data *data)
 		tmp = HEAD_B;
 		push_node(&HEAD_A, new_node(HEAD_B->data));
 		HEAD_A->idx = HEAD_B->idx;
-		HEAD_A->cur_idx = HEAD_B->cur_idx;
+		// HEAD_A->cur_idx = HEAD_B->cur_idx;
 		HEAD_B = HEAD_B->next;
 		free(tmp);
 		STK_SIZE_A++;
@@ -87,7 +91,7 @@ void	ft_pb(t_data *data)
 		tmp = HEAD_A;
 		push_node(&HEAD_B, new_node(HEAD_A->data));
 		HEAD_B->idx = HEAD_A->idx;
-		HEAD_B->cur_idx = HEAD_A->cur_idx;
+		// HEAD_B->cur_idx = HEAD_A->cur_idx;
 		HEAD_A = HEAD_A->next;
 		free(tmp);
 		STK_SIZE_A--;

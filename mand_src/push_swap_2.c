@@ -6,33 +6,30 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:47:27 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/01 07:23:24 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/01 10:48:31 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../libft/inc/libft.h"
 
-void	sort_a_bunch(t_data *data, int div)
+void	push_to_b(t_data *data, int div, int chunck_len)
 {
-	int		i = -1;
 	int 	k;
-	int		min_idx = 0;
-	int		chunck_len;
+	int		g;
+	int		min_idx;
 	int		half_chunk;
+	int 	mod;
 
-	chunck_len = (STK_SIZE_A / div);
-	int mod = 0;
-	mod = (STK_SIZE_A % div);
-	int g = chunck_len;
-	half_chunk = chunck_len / 2;
 	k = 0;
-	while (HEAD_A && ++i < div)
+	min_idx = 0;
+	mod = (STK_SIZE_A % div);
+	g = chunck_len;
+	half_chunk = chunck_len / 2;
+	while (HEAD_A && div--)
 	{
-		// min_idx = k;
-		if (i == div - 1)
+		if (div == 0)
 			chunck_len += mod;
-		printf("STK_SIZE= %d | minidx= %d | chucklen = %d | halfchunck = %d | k = %d\n", STK_SIZE_A, min_idx, chunck_len, half_chunk, k);
 		while (HEAD_A && (k <= chunck_len))
 		{
 			if ((HEAD_A->idx >= min_idx) && (HEAD_A->idx <= chunck_len))
@@ -47,56 +44,62 @@ void	sort_a_bunch(t_data *data, int div)
 				k++;
 			}
 			else
-			{
-				// printf("i= %d | data = %d | minidx= %d | HED_INDX=%d  | chucklen = %d | halfchunck = %d\n", i, HEAD_A->data, min_idx, HEAD_A->idx, chunck_len, half_chunk);
 				ft_ra(data);
-			}
 		}
 		min_idx += g;
 		chunck_len += g;
 		half_chunk += g;
-	printf("\nHEY\n");
 	}
-	// printf("stk_b size = %d", STK_SIZE_B);
 	return ;
 }
 
-/*
-void	sort_a_bunch(t_data *data, int div)
+t_node	*get_node(t_data *data, int idx)
 {
-	int		i = -1;
-	int 	k;
-	int		min_idx = 0;
-	int		chunck_len;
-	int		half_chunk;
+	t_node	*hold;
+	t_node	*tmp;
+	int		j;
 
-	int g = div;
-	int d = STK_SIZE_A;
-	chunck_len = (STK_SIZE_A / div);
-	half_chunk = chunck_len / 2;
-	k = 0;
-	while (HEAD_A && ++i < div)
+	j = 0;
+	tmp = HEAD_B;
+	while (j < STK_SIZE_B)
 	{
-		// min_idx = k;
-		printf("STK_SIZE= %d | minidx= %d | chucklen = %d | halfchunck = %d | k = %d\n", STK_SIZE_A, min_idx, chunck_len, half_chunk, k);
-		while (HEAD_A && (k <= chunck_len))
+		if (tmp->idx == idx)
 		{
-			if ((HEAD_A->idx >= min_idx) && (HEAD_A->idx <= chunck_len))
-			{
-				printf("i= %d | data = %d | minidx= %d | HED_INDX=%d  | chucklen = %d | halfchunck = %d\n", i, HEAD_A->data, min_idx, HEAD_A->idx, chunck_len, half_chunk);
-				// printf("%d | idx=%d | k=%d | c_l=%d\n", HEAD_A->data, HEAD_A->idx, k, chunck_len);
-				ft_pb(data);
-				k++;
-			}
-			else
-			{
-				// printf("i= %d | data = %d | minidx= %d | HED_INDX=%d  | chucklen = %d | halfchunck = %d\n", i, HEAD_A->data, min_idx, HEAD_A->idx, chunck_len, half_chunk);
-				ft_ra(data);
-			}
+			hold = tmp;
+			return (hold);
 		}
-		min_idx += (d / g);
-		chunck_len += (d / --g);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+void	push_to_a(t_data *data)
+{
+	t_node	*hold;
+	// t_node	*hold2;
+	t_node	*tmp;
+	int		j;
+
+	j = 0;
+	while (STK_SIZE_B != 0)
+	{
+		tmp = HEAD_B;
+		current_index_instack(HEAD_B, STK_SIZE_B);
+		hold = get_node(data, STK_SIZE_B -1);
+		// if (STK_SIZE_B > 2)
+		// {
+		// 	hold2 = get_node(data, STK_SIZE_B - 2);
+		// 	printf("hold1 = %d | hold2 = %d\n", hold->data, hold2->data);
+		// 	if ((STK_SIZE_B - hold2->cur_idx) < hold->cur_idx)
+		// 		hold = hold2;
+		// }
+		if (hold->cur_idx <= (STK_SIZE_B / 2))
+			while (hold->cur_idx--)
+				ft_rb(data);
+		else
+			while(hold->cur_idx++ < STK_SIZE_B)
+				ft_rrb(data);
+		ft_pa(data);
 	}
 	return ;
 }
-*/

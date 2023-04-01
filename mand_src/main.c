@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:51:07 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/01 07:25:14 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/01 10:51:13 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int ac, char **av)
 	// index_stack(data.s_a->head, data.s_a->stk_size);
 
 	// **	Sorting
-	printf("\n\n****************** Instructions ******************\n");
+	// printf("\n\n****************** Instructions ******************\n");
 	sort_that_shit(&data);
 	// index_stack(data.s_a->head, data.s_a->stk_size);
 	// current_index_instack(data.s_a->head, data.s_a->stk_size);
@@ -46,13 +46,13 @@ int main(int ac, char **av)
 	// test_instuctions(&data, ac);
 	
 	// **	Print content of both stacks
-	print_stacks(data);
+	// print_stacks(data);
 
 	// **	free both stacks
 	free_stacks(&data);
 
 	// **	Checks leaks
-	atexit(lk);
+	// atexit(lk);
 	
 	return (0);
 }

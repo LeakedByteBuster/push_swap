@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 02:24:17 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/01 07:15:35 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/01 09:42:00 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ void	ft_ra(t_data *data)
 		// printf("ra : HEAD_A = %d | stacka_size = %d \n\n", HEAD_A->data, STK_A->stk_size);
 		tmp = HEAD_A;
 		addback_node(&HEAD_A, new_node(HEAD_A->data));
-	
 		STK_A->botm = last_node(HEAD_A);
-		BOTM_A->cur_idx = HEAD_A->cur_idx;
+		// BOTM_A->cur_idx = HEAD_A->cur_idx;
 		BOTM_A->idx = HEAD_A->idx;
-
 		HEAD_A = HEAD_A->next;
 		free(tmp);
 		HEAD_A->prev = NULL;
@@ -45,7 +43,7 @@ void	ft_rb(t_data *data)
 		tmp = HEAD_B;
 		addback_node(&HEAD_B, new_node(HEAD_B->data));
 		BOTM_B = last_node(HEAD_B);
-		BOTM_B->cur_idx = HEAD_B->cur_idx;
+		// BOTM_B->cur_idx = HEAD_B->cur_idx;
 		BOTM_B->idx = HEAD_B->idx;
 		HEAD_B = HEAD_B->next;
 		free(tmp);
@@ -75,6 +73,7 @@ void	ft_rra(t_data *data)
 		// printf("rra : HEAD_A = %d | stacka_size = %d | BOTM_A = %d \n\n", HEAD_A->next->data, STK_A->stk_size, STK_A->botm->data);
 		tmp = STK_A->botm;
 		push_node(&HEAD_A, new_node(STK_A->botm->data));
+		HEAD_A->idx = BOTM_A->idx;
 		STK_A->botm = STK_A->botm->prev;
 		free(tmp);
 		STK_A->botm->next = NULL;
@@ -92,9 +91,10 @@ void	ft_rrb(t_data *data)
 	{
 		tmp = BOTM_B;
 		push_node(&HEAD_B, new_node(BOTM_B->data));
+		HEAD_B->idx = BOTM_B->idx;
 		BOTM_B = STK_B->botm->prev;
-		BOTM_B->next = NULL;
 		free(tmp);
+		BOTM_B->next = NULL;
 		write(1, "rrb\n", 4);
 	}
 	return ;

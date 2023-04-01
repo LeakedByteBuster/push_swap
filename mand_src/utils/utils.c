@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 03:50:21 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/01 04:46:38 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/01 10:31:16 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,6 @@ void	index_stack(t_node *head, int stk_size)
 		}
 		tmp = tmp->next;
 	}
-	
-	i = 0;
-	printf("****************** Sorted ******************\n");
-	while(i < stk_size)
-		{printf("%d ", arr[i]);i++;}
 	free(arr);
 	return;
 }
