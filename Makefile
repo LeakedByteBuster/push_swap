@@ -6,7 +6,7 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 10:52:24 by mfouadi           #+#    #+#              #
-#    Updated: 2023/03/29 06:34:14 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/03/30 23:11:35 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ INCDIR := include
 SRC := mand_src/main.c \
 		mand_src/parsing.c \
 		mand_src/push_swap.c \
+		mand_src/push_swap_2.c \
 		mand_src/utils/utils.c \
 		mand_src/utils/debbuging.c \
 		mand_src/utils/instructions.c \

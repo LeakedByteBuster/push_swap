@@ -19,10 +19,15 @@ void print_stacks(t_data data)
 		printf("%d ", tmp->data);
 		tmp = tmp->next;
 	}
-
+// ********************************************
 	printf("\n\n");
 	printf("STACK_B: ");
 	tmp = data.s_b->head;
+	// while (tmp)
+	// {
+	// 	printf("[ %d|cur_idx=%d|idx=%d ] ", tmp->data, tmp->cur_idx, tmp->idx);
+	// 	tmp = tmp->next;
+	// }
 	// // ** prints stack B
 	while (tmp)
 	{
@@ -30,8 +35,8 @@ void print_stacks(t_data data)
 		tmp = tmp->next;
 	}
 	printf("\n\n");
-	printf("a_size = %d | b_size = %d | HEAD_A = %d | BOTM_A = %d | MIN_VAL_A = %d |  MAX_VAL_A = %d \n\n",
-		   data.s_a->stk_size, data.s_b->stk_size, data.s_a->head->data, data.s_a->botm->data, data.s_a->min->data, data.s_a->max->data);
+	// printf("a_size = %d | b_size = %d | HEAD_A = %d | BOTM_A = %d | MIN_VAL_A = %d |  MAX_VAL_A = %d \n\n",
+	// 	   data.s_a->stk_size, data.s_b->stk_size, data.s_a->head->data, data.s_a->botm->data, data.s_a->min->data, data.s_a->max->data);
 	return;
 }
 
@@ -42,48 +47,23 @@ void test_instuctions(t_data *data, int ac)
 	// **	pa pb pb ss
 	for (size_t i = 0; i < 1000; i++)
 	{
-		ft_pa(data);
-		ft_pb(data);
-		ft_pb(data);
-		ft_ss(data);
+		// ft_pa(data);
+		// ft_pb(data);
+		// ft_pb(data);
+	ft_pb(data);
+		// ft_ss(data);
 	}
-	// // // **	pa sa
 	for (size_t i = 0; i < 1000; i++)
 	{
-		ft_pa(data);
-		ft_sa(data);
-		ft_rr(data);
+	// ft_pa(data);
+	// ft_pb(data);
+	// ft_pb(data);
+	ft_pa(data);
+	// ft_ss(data);
 	}
-	// // ** SINGLE INSTRUCTION LAB
-	for (size_t i = 0; i < 100; i++)
-	{
-		ft_pa(data);
-		// ft_sa(data);
-		ft_rb(data);
-		// // printf("1 : a_size = %d | b_size = %d | ac = %d \n\n", STK_SIZE_A, STK_SIZE_B, ac);
-		ft_rrb(data);
-		// // printf("2 : a_size = %d | b_size = %d | ac = %d \n\n", STK_SIZE_A, STK_SIZE_B, ac);
-		ft_ra(data);
-		ft_rr(data);
-		ft_rrr(data);
-	}
+	// ft_pb(data);
+	// ft_pb(data);
 	(void)ac;
-	ft_pb(data);
-	// ft_rb(data);
-	// ft_rb(data);
-	// ft_rrb(data);
-	// ft_pa(data);
-	// ft_pb(data);
-	// ft_pb(data);
-	// ft_rrr(data);
-	// ft_sb(data);
-	// ft_pa(data);
-	// ft_pb(data);
-	// ft_pb(data);
-	// ft_pb(data);
-	// ft_pb(data);
-	// ft_rra(data);
-	// ft_rb(data);
 	// printf("a_size = %d | b_size = %d | ac = %d | BOTM_A = %d | BOTM_B = %d\n\n",
 	// 	   STK_SIZE_A, STK_SIZE_B, ac, BOTM_A->data, BOTM_B->data);
 	return;

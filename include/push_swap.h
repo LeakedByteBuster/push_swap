@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:15:03 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/29 09:05:40 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/01 02:54:46 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../libft/inc/libft.h"
 
-#define STK_A data->s_a
+#define STK_A	data->s_a
 #define STK_B data->s_b
 
 #define HEAD_A data->s_a->head
@@ -32,6 +32,8 @@
 
 #define MIN_VAL_B data->s_b->min
 #define MAX_VAL_B data->s_b->max
+
+#define HED_INDX HEAD_A->idx
 
 // **	node struct (libft.h)
 typedef struct s_node	t_node;
@@ -110,15 +112,17 @@ void	ft_rrr(t_data *data);
 
 // **	Sort given integers
 void	sort_that_shit(t_data *data);
-
+// **	Where the values should be placed
 void	index_stack(t_node *head, int stk_size);
-
+// **	Where the values are placed currently
 void	current_index_instack(t_node *head, int n);
-
+// **	Check if stack is sorted or not yet
 bool	if_sorted_stop(t_node *head, int n);
+// **	Sort 100 numbers
+void	sort_a_bunch(t_data *data, int div);
 
 /********************* Debugging ********************/
-void	lk();
+	void lk();
 void	fill_stk_b(t_data *data);
 void	test_instuctions(t_data *data, int ac);
 void	print_stacks(t_data data);

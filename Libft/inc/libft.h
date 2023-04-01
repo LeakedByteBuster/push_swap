@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 22:33:09 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/29 05:05:21 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/01 02:12:12 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <stdbool.h>
 # include "get_next_line.h"
 # include "ft_printf.h"
+# include "sorting.h"
 # include "../../include/push_swap.h"
 
 # ifndef NULL_CHAR
