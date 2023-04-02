@@ -6,43 +6,51 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:47:27 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/02 11:42:38 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 15:14:39 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../libft/inc/libft.h"
 
-void	push_to_b(t_data *data, int div, int chunck_len)
+void	__push_b(t_data *data, int half_chunk, int *k)
+{
+	if (data->s_a->head->idx <= half_chunk)
+	{
+		ft_pb(data);
+		ft_rb(data);
+	}
+	else
+		ft_pb(data);
+	(*k)++;
+	return ;
+}
+
+void	init_var(int *k, int *g, int *min_idx, int chunk_len)
+{
+	*k = 0;
+	*min_idx = 0;
+	*g = chunk_len;
+}
+
+void	push_to_b(t_data *data, int div, int chunck_len, int half_chunk)
 {
 	int	k;
 	int	g;
 	int	min_idx;
-	int	half_chunk;
 	int	mod;
 
-	k = 0;
-	min_idx = 0;
-	mod = (STK_SIZE_A % div);
-	g = chunck_len;
-	half_chunk = chunck_len / 2;
-	while (HEAD_A && div--)
+	init_var(&k, &g, &min_idx, chunck_len);
+	mod = (data->s_a->stk_size % div);
+	while (data->s_a->head && div--)
 	{
 		if (div == 0)
 			chunck_len += mod;
-		while (HEAD_A && (k <= chunck_len))
+		while (data->s_a->head && (k <= chunck_len))
 		{
-			if ((HEAD_A->idx >= min_idx) && (HEAD_A->idx <= chunck_len))
-			{
-				if (HEAD_A->idx <= half_chunk)
-				{
-					ft_pb(data);
-					ft_rb(data);
-				}
-				else
-					ft_pb(data);
-				k++;
-			}
+			if ((data->s_a->head->idx >= min_idx)
+				&& (data->s_a->head->idx <= chunck_len))
+				__push_b(data, half_chunk, &k);
 			else
 				ft_ra(data);
 		}
@@ -50,44 +58,19 @@ void	push_to_b(t_data *data, int div, int chunck_len)
 		chunck_len += g;
 		half_chunk += g;
 	}
-	return ;
 }
 
-t_node	*get_node_position(t_data *data, int idx)
+void	__push_to_a(t_node *hold, t_data *data, int *bol, int set_bol)
 {
-	t_node	*tmp;
-	int		j;
-
-	j = 0;
-	tmp = HEAD_B;
-	while (j < STK_SIZE_B)
-	{
-		if (tmp->idx == idx)
-			return (tmp);
-		tmp = tmp->next;
-		j++;
-	}
-	return (NULL);
-}
-
-int	nbr_of_moves(int big, int small, int stk_size)
-{
-	int	b;
-	int	s;
-
-	b = 0;
-	s = 0;
-	if (big < (stk_size / 2))
-		b = big + 1;
+	if (set_bol == 1)
+		*bol = 1;
+	if (hold->cur_idx < (data->s_b->stk_size / 2))
+		while (hold->cur_idx-- > 0)
+			ft_rb(data);
 	else
-		b = stk_size - big + 1;
-	if (small < (stk_size / 2))
-		s = small + 2;
-	else
-		s = stk_size - small + 2;
-	if (s < b)
-		return (1);
-	return (0);
+		while (hold->cur_idx++ < data->s_b->stk_size)
+			ft_rrb(data);
+	ft_pa(data);
 }
 
 void	push_to_a(t_data *data)
@@ -97,45 +80,22 @@ void	push_to_a(t_data *data)
 	int		bol;
 
 	bol = 0;
-	hold = NULL;
-	hold2 = NULL;
-	while (STK_SIZE_B != 0)
+	while (data->s_b->stk_size != 0)
 	{
-		current_index_instack(HEAD_B, STK_SIZE_B);
-		hold = get_node_position(data, STK_SIZE_B -1);
-		if (hold && (STK_SIZE_B > 1))
-			hold2 = get_node_position(data, STK_SIZE_B - 2);
-		if ((hold2 != NULL) && (hold != NULL) && (STK_SIZE_B > 2))
+		current_index_instack(data->s_b->head, data->s_b->stk_size);
+		hold = get_node_position(data, data->s_b->stk_size -1);
+		if (hold && (data->s_b->stk_size > 1))
+			hold2 = get_node_position(data, data->s_b->stk_size - 2);
+		if ((hold2 != NULL) && (hold != NULL) && (data->s_b->stk_size > 2))
 		{
-			if (nbr_of_moves(hold->cur_idx, hold2->cur_idx, STK_SIZE_B) == 1)
-			{
-				bol = 1;
-				if (hold2->cur_idx < (STK_SIZE_B / 2))
-				{
-					while (hold2->cur_idx-- > 0)
-						ft_rb(data);
-				}
-				else
-				{
-					while (hold2->cur_idx++ < STK_SIZE_B)
-						ft_rrb(data);
-				}
-				ft_pa(data);
-			}
-			current_index_instack(HEAD_B, STK_SIZE_B);
+			if (nbr_of_moves(hold->cur_idx, hold2->cur_idx,
+					data->s_b->stk_size) == 1)
+				__push_to_a(hold2, data, &bol, 1);
+			current_index_instack(data->s_b->head, data->s_b->stk_size);
 		}
-		if (hold->cur_idx < (STK_SIZE_B / 2))
-			while (hold->cur_idx-- > 0)
-				ft_rb(data);
-		else
-			while (hold->cur_idx++ < STK_SIZE_B)
-				ft_rrb(data);
-		ft_pa(data);
+		__push_to_a(hold, data, &bol, 0);
 		if (bol == 1)
-		{
-			bol = 0;
 			ft_sa(data);
-		}
+		bol = 0;
 	}
-	return ;
 }

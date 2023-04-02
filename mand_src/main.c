@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:51:07 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/02 11:37:11 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 15:24:45 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 #include "push_swap.h"
 
+/*
+ARG=`ruby -e "puts (0..4).to_a.shuffle.join(' ')"`; 
+./push_swap $ARG | wc -l && ./push_swap $ARG | ./checker $ARG
+*/
 int	main(int ac, char **av)
 {
 	t_data	data;

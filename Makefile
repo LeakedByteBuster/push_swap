@@ -6,7 +6,7 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 10:52:24 by mfouadi           #+#    #+#              #
-#    Updated: 2023/04/02 11:48:15 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/04/02 13:33:10 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC := mand_src/main.c \
 		mand_src/push_swap.c \
 		mand_src/push_swap_2.c \
 		mand_src/utils/utils.c \
+		mand_src/utils/utils2.c \
 		mand_src/utils/debbuging.c \
 		mand_src/utils/instructions.c \
 		mand_src/utils/instructions2.c \

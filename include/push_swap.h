@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:15:03 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/02 11:59:36 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 15:24:32 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "../libft/inc/libft.h"
-
-# define STK_A	data->s_a
-# define STK_B data->s_b
-
-# define HEAD_A data->s_a->head
-# define HEAD_B data->s_b->head
-
-# define BOTM_A data->s_a->botm
-# define BOTM_B data->s_b->botm
-
-# define STK_SIZE_A data->s_a->stk_size
-# define STK_SIZE_B data->s_b->stk_size
-
-# define MIN_VAL_A data->s_a->min
-# define MAX_VAL_A data->s_a->max
-
-# define MIN_VAL_B data->s_b->min
-# define MAX_VAL_B data->s_b->max
-
-# define HED_INDX HEAD_A->idx
 
 // **	node struct (libft.h)
 typedef struct s_node	t_node;
@@ -118,13 +98,19 @@ void	index_stack(t_node *head, int stk_size);
 void	current_index_instack(t_node *head, int n);
 // **	Check if stack is sorted or not yet
 bool	if_sorted_stop(t_node *head, int n);
-// **	Sort 100 numbers
-void	push_to_b(t_data *data, int div, int chunck_len);
+// **	Starting from min val in A, keep pushing to B until STK_SIZE_A = 0
+void	push_to_b(t_data *data, int div, int chunk_len, int half_chunk);
+// **	Starting from max val in B, keep pushing to A until STK_SIZE_B = 0
 void	push_to_a(t_data *data);
 
+void	three_sort(t_data *data);
+t_node	*get_node_position(t_data *data, int idx);
+int		nbr_of_moves(int big, int small, int stk_size);
+void	__assign_idx(t_node *head, int *arr, int stk_size);
+
 /********************* Debugging ********************/
-void	fill_stk_b(t_data *data);
-void	test_instuctions(t_data *data, int ac);
-void	print_stacks(t_data data);
+// void	fill_stk_b(t_data *data);
+// void	test_instuctions(t_data *data, int ac);
+// void	print_stacks(t_data data);
 
 #endif // PUSH_SWAP_H

@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 03:50:21 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/02 11:53:40 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 14:05:15 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,7 @@ void	index_stack(t_node *head, int stk_size)
 	i = -1;
 	k = 0;
 	tmp = head;
-	while (++i < stk_size)
-	{
-		k = -1;
-		while (++k < stk_size)
-			if (tmp->data == arr[k])
-				tmp->idx = k;
-		tmp = tmp->next;
-	}
+	__assign_idx(head, arr, stk_size);
 	free(arr);
 	return ;
 }
