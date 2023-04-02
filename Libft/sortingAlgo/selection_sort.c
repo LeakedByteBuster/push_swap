@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 05:13:41 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/17 06:11:09 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 12:08:19 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	selection_sort(int a[], int n)
 	int	min;
 
 	i = -1;
-	while(++i < n - 1)
+	while (++i < n - 1)
 	{
 		j = i - 1;
 		min = i;
@@ -40,5 +40,5 @@ void	selection_sort(int a[], int n)
 				min = j;
 		swap_int(&a[i], &a[min]);
 	}
-	return;
+	return ;
 }

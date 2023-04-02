@@ -6,7 +6,7 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 10:52:24 by mfouadi           #+#    #+#              #
-#    Updated: 2023/03/30 23:11:35 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/04/02 11:48:15 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC := mand_src/main.c \
 		mand_src/utils/debbuging.c \
 		mand_src/utils/instructions.c \
 		mand_src/utils/instructions2.c \
+		mand_src/utils/instructions3.c \
 
 # patsubst ('pattern substitution') takes a pattern, a replacement string and a list of names
 # List of object files to be generated

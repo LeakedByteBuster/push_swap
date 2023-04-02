@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 22:33:09 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/01 09:22:27 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 11:56:37 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@
 # endif // #define NULL_CHAR
 
 // **	Stack_a and Stack_b are declared in push_swap.h
-typedef struct	stack_a t_a;
-typedef struct	stack_b t_b;
+typedef struct stack_a		t_a;
+typedef struct stack_b		t_b;
+typedef unsigned long long	t_ull;
 
 // ** Structure of singly linked list
 typedef struct s_list
@@ -113,7 +114,6 @@ int		printf_putnbr_fd(int n, int fd);
 int		printf_putstr_fd(char *s, int fd);
 int		printf_putunbr_fd(unsigned int n, int fd);
 
-typedef unsigned long long	t_ull;
 // **	Generates a random number
 t_ull	ft_rand(void);
 

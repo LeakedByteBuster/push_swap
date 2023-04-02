@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 14:47:27 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/02 11:28:33 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 11:42:38 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 void	push_to_b(t_data *data, int div, int chunck_len)
 {
-	int 	k;
-	int		g;
-	int		min_idx;
-	int		half_chunk;
-	int 	mod;
+	int	k;
+	int	g;
+	int	min_idx;
+	int	half_chunk;
+	int	mod;
 
 	k = 0;
 	min_idx = 0;
@@ -53,7 +53,6 @@ void	push_to_b(t_data *data, int div, int chunck_len)
 	return ;
 }
 
-
 t_node	*get_node_position(t_data *data, int idx)
 {
 	t_node	*tmp;
@@ -78,12 +77,10 @@ int	nbr_of_moves(int big, int small, int stk_size)
 
 	b = 0;
 	s = 0;
-
 	if (big < (stk_size / 2))
 		b = big + 1;
 	else
 		b = stk_size - big + 1;
-	// ** '+ 2' because i have to pa(), then sa()
 	if (small < (stk_size / 2))
 		s = small + 2;
 	else
@@ -104,16 +101,15 @@ void	push_to_a(t_data *data)
 	hold2 = NULL;
 	while (STK_SIZE_B != 0)
 	{
-		current_index_instack(HEAD_B, STK_SIZE_B);	
-		hold = get_node_position(data, STK_SIZE_B-1);
+		current_index_instack(HEAD_B, STK_SIZE_B);
+		hold = get_node_position(data, STK_SIZE_B -1);
 		if (hold && (STK_SIZE_B > 1))
 			hold2 = get_node_position(data, STK_SIZE_B - 2);
 		if ((hold2 != NULL) && (hold != NULL) && (STK_SIZE_B > 2))
 		{
 			if (nbr_of_moves(hold->cur_idx, hold2->cur_idx, STK_SIZE_B) == 1)
 			{
-				// **	if node is located in the upper half of the STACK_B ==> rb(), else ==> rrb()
-				bol =  1;
+				bol = 1;
 				if (hold2->cur_idx < (STK_SIZE_B / 2))
 				{
 					while (hold2->cur_idx-- > 0)
@@ -128,7 +124,6 @@ void	push_to_a(t_data *data)
 			}
 			current_index_instack(HEAD_B, STK_SIZE_B);
 		}
-		// **	Push biggest number to STACK_A
 		if (hold->cur_idx < (STK_SIZE_B / 2))
 			while (hold->cur_idx-- > 0)
 				ft_rb(data);
@@ -136,7 +131,6 @@ void	push_to_a(t_data *data)
 			while (hold->cur_idx++ < STK_SIZE_B)
 				ft_rrb(data);
 		ft_pa(data);
-		// **	Swap STACK_A
 		if (bol == 1)
 		{
 			bol = 0;

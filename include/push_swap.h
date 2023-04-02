@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:15:03 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/01 10:15:11 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 11:59:36 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,31 @@
 
 # include "../libft/inc/libft.h"
 
-#define STK_A	data->s_a
-#define STK_B data->s_b
+# define STK_A	data->s_a
+# define STK_B data->s_b
 
-#define HEAD_A data->s_a->head
-#define HEAD_B data->s_b->head
+# define HEAD_A data->s_a->head
+# define HEAD_B data->s_b->head
 
-#define BOTM_A data->s_a->botm
-#define BOTM_B data->s_b->botm
+# define BOTM_A data->s_a->botm
+# define BOTM_B data->s_b->botm
 
-#define STK_SIZE_A data->s_a->stk_size
-#define STK_SIZE_B data->s_b->stk_size
+# define STK_SIZE_A data->s_a->stk_size
+# define STK_SIZE_B data->s_b->stk_size
 
-#define MIN_VAL_A data->s_a->min
-#define MAX_VAL_A data->s_a->max
+# define MIN_VAL_A data->s_a->min
+# define MAX_VAL_A data->s_a->max
 
-#define MIN_VAL_B data->s_b->min
-#define MAX_VAL_B data->s_b->max
+# define MIN_VAL_B data->s_b->min
+# define MAX_VAL_B data->s_b->max
 
-#define HED_INDX HEAD_A->idx
+# define HED_INDX HEAD_A->idx
 
 // **	node struct (libft.h)
 typedef struct s_node	t_node;
 
 // **	Initial stack that contains the given values 
-typedef struct	stack_a
+typedef struct stack_a
 {
 	t_node		*head;
 	t_node		*botm;
@@ -93,16 +93,16 @@ void	ft_pa(t_data *data);
 // **	Take the first element at the top of a and put it at the top of b
 void	ft_pb(t_data *data);
 
-// **	Shift up all elements of stack a by 1. The first element becomes the last one
+// **	Shift up all elements of stack a by 1.first element becomes the last one
 void	ft_ra(t_data *data);
-// **	Shift up all elements of stack b by 1. The first element becomes the last one
+// **	Shift up all elements of stack b by 1.first element becomes the last one
 void	ft_rb(t_data *data);
 // **	ra and rb at the same time
 void	ft_rr(t_data *data);
 
-// **	Shift down all elements of stack a by 1. The last element becomes the first one.
+// **	Shift down all elements of stack a by 1.last element becomes the first
 void	ft_rra(t_data *data);
-// **	Shift down all elements of stack b by 1. The last element becomes the first one.
+// **	Shift down all elements of stack b by 1.last element becomes the first
 void	ft_rrb(t_data *data);
 // **	rra and rrb at the same time
 void	ft_rrr(t_data *data);
@@ -122,8 +122,7 @@ bool	if_sorted_stop(t_node *head, int n);
 void	push_to_b(t_data *data, int div, int chunck_len);
 void	push_to_a(t_data *data);
 
-	/********************* Debugging ********************/
-	void lk();
+/********************* Debugging ********************/
 void	fill_stk_b(t_data *data);
 void	test_instuctions(t_data *data, int ac);
 void	print_stacks(t_data data);

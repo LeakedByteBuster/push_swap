@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 22:25:31 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/21 08:02:01 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 12:10:54 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*skip_spaces(char *str)
 	return (str);
 }
 
-void print_err()
+void	print_err(void)
 {
 	write(2, "Error\n", 7);
 	exit(3);
@@ -56,10 +56,10 @@ void	sign_handler(const char **str, int *sign)
 	return ;
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	long res;
-	int sign;
+	long	res;
+	int		sign;
 
 	sign = 1;
 	res = 0;

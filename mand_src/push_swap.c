@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 01:24:30 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/02 11:32:25 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 11:39:25 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	sort_three(t_data *data)
 				return (ft_sa(data), (void)0);
 		}
 		if (if_sorted_stop(HEAD_A, STK_SIZE_A) == 1)
-			return;
+			return ;
 		if (mid->idx == 1)
 		{
 			if (BOTM_A->idx == 0)
@@ -51,15 +51,14 @@ void	sort_three(t_data *data)
 		if (if_sorted_stop(HEAD_A, STK_SIZE_A) == 1)
 			return ;
 		if (mid->idx == 2)
-		{
-			
+		{	
 			if (BOTM_A->idx == 0)
 				return (ft_rra(data), (void)0);
 			else
 				return (ft_rra(data), ft_sa(data), (void)0);
 		}
 	}
-	return;
+	return ;
 }
 
 void	sort_four(t_data *data)
@@ -83,7 +82,7 @@ void	sort_four(t_data *data)
 		sort_three(data);
 		ft_pa(data);
 	}
-	return;
+	return ;
 }
 
 void	sort_five(t_data *data)

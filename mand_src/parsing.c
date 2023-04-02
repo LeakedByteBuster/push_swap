@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 09:06:31 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/02 08:49:36 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 11:38:28 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	init_data(t_data *data)
 
 void	fill_stack_a(t_data *data, char **av, int ac)
 {
-	char **tmp;
-	int i;
+	char	**tmp;
+	int		i;
 
 	i = 0;
 	while (--ac != 0)
@@ -47,8 +47,8 @@ void	fill_stack_a(t_data *data, char **av, int ac)
 
 void	find_duplicate_nbr(t_data *data)
 {
-	t_node *tmp;
-	t_node *tmp2;
+	t_node	*tmp;
+	t_node	*tmp2;
 	int		check;
 
 	tmp = HEAD_A;
@@ -74,7 +74,7 @@ void	if_sorted(t_data *data)
 {
 	t_node	*node;
 	int		i;
-	
+
 	i = STK_SIZE_A;
 	node = HEAD_A;
 	while (i--)
@@ -82,7 +82,7 @@ void	if_sorted(t_data *data)
 		if (node->next && (node->data < node->next->data))
 			node = node->next;
 		else
-			break;
+			break ;
 	}
 	if (i == 0)
 		exit(0);
