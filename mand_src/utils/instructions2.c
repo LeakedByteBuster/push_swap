@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 02:24:17 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/01 09:42:00 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 09:18:49 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_ra(t_data *data)
 
 	if (STK_SIZE_A > 1)
 	{
-		// printf("ra : HEAD_A = %d | stacka_size = %d \n\n", HEAD_A->data, STK_A->stk_size);
 		tmp = HEAD_A;
 		addback_node(&HEAD_A, new_node(HEAD_A->data));
 		STK_A->botm = last_node(HEAD_A);
@@ -38,7 +37,7 @@ void	ft_rb(t_data *data)
 {
 	t_node	*tmp;
 
-	if (STK_SIZE_B > 1)
+	if (STK_B && STK_SIZE_B > 1)
 	{
 		tmp = HEAD_B;
 		addback_node(&HEAD_B, new_node(HEAD_B->data));
@@ -70,7 +69,6 @@ void	ft_rra(t_data *data)
 	
 	if (STK_SIZE_A > 1)
 	{
-		// printf("rra : HEAD_A = %d | stacka_size = %d | BOTM_A = %d \n\n", HEAD_A->next->data, STK_A->stk_size, STK_A->botm->data);
 		tmp = STK_A->botm;
 		push_node(&HEAD_A, new_node(STK_A->botm->data));
 		HEAD_A->idx = BOTM_A->idx;

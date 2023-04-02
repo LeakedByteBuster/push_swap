@@ -45,24 +45,24 @@ void test_instuctions(t_data *data, int ac)
 	// ** Testing Instructions
 
 	// **	pa pb pb ss
-	for (size_t i = 0; i < 1000; i++)
+	for (size_t i = 0; i < 100054; i++)
 	{
-		// ft_pa(data);
-		// ft_pb(data);
-		// ft_pb(data);
-	ft_pb(data);
+		ft_pa(data);
+		ft_pb(data);
+		ft_pb(data);
+		ft_pa(data);
 		// ft_ss(data);
 	}
-	for (size_t i = 0; i < 1000; i++)
+	for (size_t i = 0; i < 10051; i++)
 	{
-	// ft_pa(data);
-	// ft_pb(data);
-	// ft_pb(data);
 	ft_pa(data);
+	ft_pb(data);
+	ft_pb(data);
+		ft_rb(data);
 	// ft_ss(data);
 	}
-	// ft_pb(data);
-	// ft_pb(data);
+	ft_pb(data);
+	ft_pb(data);
 	(void)ac;
 	// printf("a_size = %d | b_size = %d | ac = %d | BOTM_A = %d | BOTM_B = %d\n\n",
 	// 	   STK_SIZE_A, STK_SIZE_B, ac, BOTM_A->data, BOTM_B->data);

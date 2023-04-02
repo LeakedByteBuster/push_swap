@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 03:44:16 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/03/19 08:20:16 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/02 08:57:55 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	addafter_node(t_node *prev_node, t_node *new_node)
 {
 	if (!prev_node)
 		return ;
-	// printf("new_node = %s", new_node->data);
 	new_node->prev = prev_node;
 	new_node->next = prev_node->next;
 	prev_node->next = new_node;//
