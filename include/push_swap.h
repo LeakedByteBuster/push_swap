@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:15:03 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/02 15:24:32 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/03 03:12:09 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,9 @@ void	ft_rrb(t_data *data);
 // **	rra and rrb at the same time
 void	ft_rrr(t_data *data);
 // **	Index stack_A
-
 /********************* Sorting ********************/
 
-// **	Sort given integers
+// **	Sort the given integers
 void	sort_that_shit(t_data *data);
 // **	Where the values should be placed
 void	index_stack(t_node *head, int stk_size);
@@ -108,9 +107,37 @@ t_node	*get_node_position(t_data *data, int idx);
 int		nbr_of_moves(int big, int small, int stk_size);
 void	__assign_idx(t_node *head, int *arr, int stk_size);
 
+//******************* BONUS ********************
+// **	Swaps the two elements at top of stack A
+void	ftb_sa(t_data *data);
+// **	Swaps the two elements at top of stack B
+void	ftb_sb(t_data *data);
+// **	sa and sb at the same time
+void	ftb_ss(t_data *data);
+
+// **	Take the first element at the top of b and put it at the top of a
+void	ftb_pa(t_data *data);
+// **	Take the first element at the top of a and put it at the top of b
+void	ftb_pb(t_data *data);
+
+// **	Shift up all elements of stack a by 1.first element becomes the last one
+void	ftb_ra(t_data *data);
+// **	Shift up all elements of stack b by 1.first element becomes the last one
+void	ftb_rb(t_data *data);
+// **	ra and rb at the same time
+void	ftb_rr(t_data *data);
+// **	Shift down all elements of stack a by 1.last element becomes the first
+void	ftb_rra(t_data *data);
+// **	Shift down all elements of stack b by 1.last element becomes the first
+void	ftb_rrb(t_data *data);
+// **	rra and rrb at the same time
+void	ftb_rrr(t_data *data);
+// **	Parse given arguments, and stores them in STACK_A
+void	parser_bonus(t_data *data, int ac, char **av);
+
 /********************* Debugging ********************/
 // void	fill_stk_b(t_data *data);
 // void	test_instuctions(t_data *data, int ac);
-// void	print_stacks(t_data data);
+void	print_stacks(t_data data);
 
 #endif // PUSH_SWAP_H

@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 03:50:21 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/02 14:05:15 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/03 02:55:34 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ bool	if_sorted_stop(t_node *head, int n)
 
 	i = n;
 	node = head;
-	while (i--)
+	while (i-- > 0)
 	{
 		if (node->next && (node->data < node->next->data))
 			node = node->next;

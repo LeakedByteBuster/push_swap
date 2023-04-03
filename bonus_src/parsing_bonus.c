@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 09:06:31 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/03 03:29:32 by mfouadi          ###   ########.fr       */
+/*   Created: 2023/04/03 02:06:41 by mfouadi           #+#    #+#             */
+/*   Updated: 2023/04/03 03:30:05 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,30 +70,10 @@ static void	find_duplicate_nbr(t_data *data)
 	return ;
 }
 
-static void	if_sorted(t_data *data)
-{
-	t_node	*node;
-	int		i;
-
-	i = data->s_a->stk_size;
-	node = data->s_a->head;
-	while (i--)
-	{
-		if (node->next && (node->data < node->next->data))
-			node = node->next;
-		else
-			break ;
-	}
-	if (i == 0)
-		exit(0);
-	return ;
-}
-
-void	parser(t_data *data, int ac, char **av)
-{
+void	parser_bonus(t_data *data, int ac, char **av)
+{	
 	init_data(data);
 	fill_stack_a(data, av, ac);
-	if_sorted(data);
 	find_duplicate_nbr(data);
 	min_max(data, data->s_a->head);
 	index_stack(data->s_a->head, data->s_a->stk_size);

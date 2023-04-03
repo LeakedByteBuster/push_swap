@@ -6,7 +6,7 @@
 #    By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 10:52:24 by mfouadi           #+#    #+#              #
-#    Updated: 2023/04/02 13:33:10 by mfouadi          ###   ########.fr        #
+#    Updated: 2023/04/03 02:15:23 by mfouadi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,17 +17,31 @@ OBJDIR := obj
 INCDIR := include
 
 # Finding all .c files in the source directory and its subdirectories
-SRC := mand_src/main.c \
-		mand_src/parsing.c \
-		mand_src/push_swap.c \
-		mand_src/push_swap_2.c \
-		mand_src/utils/utils.c \
-		mand_src/utils/utils2.c \
-		mand_src/utils/debbuging.c \
-		mand_src/utils/instructions.c \
-		mand_src/utils/instructions2.c \
-		mand_src/utils/instructions3.c \
+SRC 	:=	mand_src/main.c \
+			mand_src/parsing.c \
+			mand_src/push_swap.c \
+			mand_src/push_swap_2.c \
+			mand_src/utils/utils.c \
+			mand_src/utils/utils2.c \
+			mand_src/utils/debbuging.c \
+			mand_src/utils/instructions.c \
+			mand_src/utils/instructions2.c \
+			mand_src/utils/instructions3.c \
 
+BONUS_SRC = bonus_src/checker.c \
+			bonus_src/utils/instructions.c \
+			bonus_src/utils/instructions2.c \
+			bonus_src/utils/instructions3.c \
+			bonus_src/parsing_bonus.c \
+			mand_src/utils/utils.c \
+			mand_src/utils/utils2.c \
+			mand_src/utils/debbuging.c \
+
+
+
+BONUS_NAME = checker
+
+OBJ_BONUS := $(patsubst %, $(OBJDIR)/%,$(BONUS_SRC:.c=.o))
 # patsubst ('pattern substitution') takes a pattern, a replacement string and a list of names
 # List of object files to be generated
 OBJ := $(patsubst %, $(OBJDIR)/%,$(SRC:.c=.o))
@@ -79,6 +93,8 @@ $(OBJDIR)/%.o : %.c $(HEADERS)
 	 mkdir -p $(dir $@)
 	 $(CC) $(CFLAGS) -I../libft/inc -I$(HEADERS) -c $< -o $@
 
+bonus : libft_ar $(OBJ_BONUS)
+	$(CC) $(CFLAGS) $(OBJ_BONUS) $(LIBFT_ARCHIVE) -o $(BONUS_NAME)
 # Creates static archive 'libft.a'
 libft_ar:
 	make -C libft
@@ -98,7 +114,7 @@ clean :
 # Deletes libft.a, and executable
 fclean : clean
 	make -C libft fclean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS_NAME)
 
 # re-compile all .c files
 re : fclean all
@@ -108,7 +124,7 @@ re : fclean all
 #----------------------------------------------------------------------------------------------
 
 # Words that do not represent files of the project
-.Phony : all clean fclean re debug
+.Phony : all clean fclean re debug bonus libft_ar
 
 # Prevents output of these targets from being printed
 .SILENT : bonus $(NAME) clean fclean re libft_ar
