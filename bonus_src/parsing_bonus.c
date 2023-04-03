@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 02:06:41 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/03 03:30:05 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/03 05:46:53 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,30 @@ static void	fill_stack_a(t_data *data, char **av, int ac)
 {
 	char	**tmp;
 	int		i;
+	int		a;
 
 	i = 0;
-	while (--ac != 0)
+	a = 0;
+	if (ft_strncmp(av[1], "-v", 2) == 0)
 	{
-		tmp = ft_split(av[ac], ' ');
-		if (!tmp || !(*tmp))
-			return (free_stacks(data), err_msg(1), (void)0);
-		i = 0;
-		while (tmp[i])
-			i++;
-		while (i--)
-		{
-			push_node(&data->s_a->head, new_node(ft_atoi(tmp[i])));
-			data->s_a->stk_size++;
-			free(tmp[i]);
-		}
-		free(tmp);
+		data->print_stacks = 1;
+		a = 1;
+	}
+	while (--ac != a)
+	{
+			tmp = ft_split(av[ac], ' ');
+			if (!tmp || !(*tmp))
+				return (free_stacks(data), err_msg(1), (void)0);
+			i = 0;
+			while (tmp[i])
+				i++;
+			while (i--)
+			{
+				push_node(&data->s_a->head, new_node(ft_atoi(tmp[i])));
+				data->s_a->stk_size++;
+				free(tmp[i]);
+			}
+			free(tmp);
 	}
 	data->s_a->botm = last_node(data->s_a->head);
 }

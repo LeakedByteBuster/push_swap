@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:15:03 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/03 03:12:09 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/03 05:44:18 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ typedef struct stack_b
 
 typedef struct s_data
 {
-	t_a	*s_a;
-	t_b	*s_b;
+	t_a		*s_a;
+	t_b		*s_b;
+	bool	print_stacks;
 }	t_data;
 
 /********************* Parser ********************/

@@ -6,7 +6,7 @@
 /*   By: mfouadi <mfouadi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:33:13 by mfouadi           #+#    #+#             */
-/*   Updated: 2023/04/03 03:29:41 by mfouadi          ###   ########.fr       */
+/*   Updated: 2023/04/03 05:47:23 by mfouadi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ static void	exec_move(t_data *data, t_list *moves)
 	tmp = moves;
 	while (tmp)
 	{
+		if (data->print_stacks == 1)
+			print_stacks(*data);
 		which_move_is(data, tmp->content);
 		tmp = tmp->next;
 	}
