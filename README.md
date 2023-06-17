@@ -62,8 +62,7 @@ $> make bonus
 $> ./push_swap 2 1 3 6 5 | ./checker 2 1 3 6 5
 OK
 ```
-
-## Contributing
+- The checker program accepts `-v` as a flag, the program will print the content of both stacks after each instruction is executed. It also accepts `-V` flag, which will print the stack and the instruction executed.
 
 Contributions to this project are welcome! If you find any issues or have improvements to suggest, please feel free to submit a pull request.
 ## License
