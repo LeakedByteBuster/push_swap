@@ -64,6 +64,8 @@ OK
 ```
 - The checker program accepts `-v` as a flag, the program will print the content of both stacks after each instruction is executed. It also accepts `-V` flag, which will print the stack and the instruction executed.
 
+## Contribution
+
 Contributions to this project are welcome! If you find any issues or have improvements to suggest, please feel free to submit a pull request.
 ## License
 
